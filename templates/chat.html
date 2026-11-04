@@ -4,7 +4,12 @@
 <section class="chat-page">
   <div class="chat-heading">
     <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PRIVATE SPACE</div><h1>A moment to <em>check in.</em></h1><p>Share whatever is on your mind. There’s no right or wrong way to begin.</p></div>
-    <span class="badge sentiment-badge" id="sentimentBadge">Ready when you are</span>
+    <div class="chat-heading-actions">
+      <button class="clear-chat-button" id="clearChatButton" type="button" aria-label="Clear all chats" title="Clear all chats">
+        <i class="bi bi-trash3"></i><span>Clear chats</span>
+      </button>
+      <span class="badge sentiment-badge" id="sentimentBadge">Ready when you are</span>
+    </div>
   </div>
   <div class="chat-card">
     <div class="chat-card-top"><span class="chat-companion-avatar"><i class="bi bi-heart-pulse-fill"></i></span><div class="chat-companion-copy"><strong>Mindful Companion</strong><span><i class="status-dot"></i> Here with you</span></div><span class="privacy-label"><i class="bi bi-lock"></i> Just for you</span></div>
@@ -28,4 +33,4 @@
   </div>
 </section>
 {% endblock %}
-{% block scripts %}<script src="{{ url_for('static', filename='js/chat.js', v='5') }}"></script>{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/chat.js', v='6') }}"></script>{% endblock %}

@@ -257,6 +257,16 @@ def api_history():
     } for m in msgs])
 
 
+@app.route("/api/history/clear", methods=["POST"])
+@login_required
+def api_clear_history():
+    deleted_count = Message.query.filter_by(user_id=current_user.id).delete(
+        synchronize_session=False
+    )
+    db.session.commit()
+    return jsonify({"deleted_messages": deleted_count})
+
+
 @app.route("/api/trends")
 @login_required
 def api_trends():

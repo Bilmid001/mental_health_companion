@@ -2,6 +2,7 @@ const chatWindow = document.getElementById("chatWindow");
 const chatForm   = document.getElementById("chatForm");
 const chatInput  = document.getElementById("chatInput");
 const badge      = document.getElementById("sentimentBadge");
+const clearChatButton = document.getElementById("clearChatButton");
 const micButton = document.getElementById("micButton");
 const voiceStatus = document.getElementById("voiceStatus");
 const speakReplies = document.getElementById("speakReplies");
@@ -80,6 +81,33 @@ async function loadHistory(){
   if (msgs.length) chatWindow.replaceChildren();
   msgs.forEach(m => addMsg(m.text, m.sender, m.sender === "user" ? m.sentiment : null));
 }
+
+clearChatButton.addEventListener("click", async () => {
+  if (!window.confirm("Clear all of your chat messages? This cannot be undone.")) return;
+
+  clearChatButton.disabled = true;
+  try {
+    const response = await fetch("/api/history/clear", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      }
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Unable to clear your chats.");
+
+    chatWindow.replaceChildren();
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    addMsg("Your chat history has been cleared. I'm here whenever you'd like to start again.", "bot");
+    badge.textContent = "Ready when you are";
+    badge.className = "badge sentiment-badge";
+    voiceStatus.textContent = "Your chat history was cleared";
+  } catch (error) {
+    addMsg(error.message || "Unable to clear your chats. Please try again.", "bot");
+  } finally {
+    clearChatButton.disabled = false;
+  }
+});
 
 if (SpeechRecognition) {
   recognition = new SpeechRecognition();
