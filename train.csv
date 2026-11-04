@@ -1,0 +1,31 @@
+text,sentiment
+"I feel so happy today, everything is going great",positive
+"I am overwhelmed with joy and gratitude",positive
+"Life is beautiful and I feel blessed",positive
+"I love my family and friends so much",positive
+"Today was a wonderful day, I achieved my goals",positive
+"I am proud of myself",positive
+"I feel calm and peaceful",positive
+"I am excited about the future",positive
+"Things are looking up for me",positive
+"I feel grateful for everything I have",positive
+"I am so sad and lonely",negative
+"I feel hopeless and worthless",negative
+"I can't stop crying, everything hurts",negative
+"I am anxious and scared all the time",negative
+"I feel depressed and empty inside",negative
+"Nobody cares about me",negative
+"I am tired of everything",negative
+"I feel angry and frustrated",negative
+"I am stressed and overwhelmed",negative
+"I can't sleep, my mind is racing with worry",negative
+"I feel okay today",neutral
+"Nothing much happened, just a normal day",neutral
+"I am fine, just tired",neutral
+"Today was an average day",neutral
+"I don't feel strongly about anything",neutral
+"I went to work and came back",neutral
+"It is what it is",neutral
+"I am just existing",neutral
+"Life is normal",neutral
+"I have no particular feelings today",neutral

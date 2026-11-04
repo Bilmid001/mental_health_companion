@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+<section class="chat-page">
+  <div class="chat-heading">
+    <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PRIVATE SPACE</div><h1>A moment to <em>check in.</em></h1><p>Share whatever is on your mind. There’s no right or wrong way to begin.</p></div>
+    <span class="badge sentiment-badge" id="sentimentBadge">Ready when you are</span>
+  </div>
+  <div class="chat-card">
+    <div class="chat-card-top"><span class="chat-companion-avatar"><i class="bi bi-heart-pulse-fill"></i></span><div class="chat-companion-copy"><strong>Mindful Companion</strong><span><i class="status-dot"></i> Here with you</span></div><span class="privacy-label"><i class="bi bi-lock"></i> Just for you</span></div>
+    <div class="chat-window" id="chatWindow" aria-live="polite" aria-label="Conversation">
+        <div class="msg bot">
+          <div class="bubble">Hello {{ username }} 💙 I'm here to listen. How are you feeling today?</div>
+        </div>
+    </div>
+    <div class="chat-compose">
+      <div class="voice-controls">
+        <button class="voice-button mic-button" id="micButton" type="button" aria-label="Start speaking" title="Speak your message"><i class="bi bi-mic"></i><span>Speak</span></button>
+        <span class="voice-status" id="voiceStatus" aria-live="polite">Type or use your voice</span>
+        <label class="speak-toggle" for="speakReplies"><input class="form-check-input" id="speakReplies" type="checkbox" checked><span><i class="bi bi-volume-up"></i> Read replies aloud</span></label>
+      </div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" class="form-control" placeholder="Write what’s on your mind…" autocomplete="off" maxlength="2000" aria-label="Your message" required>
+        <button class="send-button" id="sendButton" type="submit" aria-label="Send message" title="Send message"><i class="bi bi-arrow-up"></i></button>
+      </form>
+      <p class="chat-disclaimer"><i class="bi bi-info-circle"></i> A supportive companion, not a substitute for professional care.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/chat.js', v='5') }}"></script>{% endblock %}

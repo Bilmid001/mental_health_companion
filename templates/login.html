@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-story">
+    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="" fetchpriority="high">
+    <div class="auth-story-shade"></div>
+    <a class="auth-brand" href="{{ url_for('index') }}"><span class="brand-mark"><i class="bi bi-heart-pulse-fill"></i></span> mindful<span>.</span></a>
+    <div class="auth-story-copy">
+      <span>A SPACE TO BEGIN</span>
+      <h2>Come as you are.<br>Start right here.</h2>
+      <p>You deserve a moment to pause, reflect, and be heard.</p>
+    </div>
+  </div>
+  <div class="auth-form-panel">
+    <span class="auth-mobile-mark"><i class="bi bi-heart-pulse-fill"></i> mindful.</span>
+    <div class="auth-form-content">
+      <div class="auth-eyebrow"><span class="eyebrow-dot"></span> YOUR WELLNESS SPACE</div>
+      <h1>Welcome back</h1>
+      <p class="auth-description">Log in to continue your wellness journey.</p>
+      <form method="POST" class="auth-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input id="username" name="username" class="form-control" autocomplete="username" required autofocus>
+        </div>
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" class="form-control" autocomplete="current-password" required>
+        </div>
+        <button class="btn auth-submit" type="submit">Log in <i class="bi bi-arrow-right"></i></button>
+      </form>
+      <p class="auth-switch">New to Mindful? <a href="{{ url_for('register') }}">Create an account</a></p>
+      <p class="auth-safety"><i class="bi bi-lock"></i> Your conversations are private to your account.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

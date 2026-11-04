@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h4 class="mb-3"><i class="bi bi-graph-up-arrow text-primary"></i> Emotional Well-Being Dashboard</h4>
+
+<div class="row g-3 mb-3">
+  <div class="col-6 col-md-3">
+    <div class="card stat-card border-0 shadow-sm"><div class="card-body">
+      <small class="text-muted">Total Messages</small>
+      <h3 id="statTotal">0</h3>
+    </div></div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card stat-card border-0 shadow-sm"><div class="card-body">
+      <small class="text-muted">Positive</small>
+      <h3 id="statPos" class="text-success">0</h3>
+    </div></div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card stat-card border-0 shadow-sm"><div class="card-body">
+      <small class="text-muted">Neutral</small>
+      <h3 id="statNeu" class="text-secondary">0</h3>
+    </div></div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card stat-card border-0 shadow-sm"><div class="card-body">
+      <small class="text-muted">Negative</small>
+      <h3 id="statNeg" class="text-danger">0</h3>
+    </div></div>
+  </div>
+</div>
+
+<div class="card shadow-sm border-0 mb-3">
+  <div class="card-body">
+    <h6 class="mb-3">14-Day Emotional Trend</h6>
+    <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+  </div>
+</div>
+
+<div class="card shadow-sm border-0">
+  <div class="card-body">
+    <h6 class="mb-3">Emotion Distribution</h6>
+    <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+async function loadStats() {
+  const r = await fetch("/api/stats");
+  if (!r.ok) throw new Error("Unable to load dashboard statistics.");
+  const d = await r.json();
+  document.getElementById("statTotal").textContent = d.total_messages;
+  document.getElementById("statPos").textContent = d.distribution.positive;
+  document.getElementById("statNeu").textContent = d.distribution.neutral;
+  document.getElementById("statNeg").textContent = d.distribution.negative;
+
+  new Chart(document.getElementById("pieChart"), {
+    type: "doughnut",
+    data: {
+      labels: ["Positive","Neutral","Negative"],
+      datasets: [{ data: [d.distribution.positive, d.distribution.neutral, d.distribution.negative],
+        backgroundColor: ["#20c997","#6c757d","#dc3545"] }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+async function loadTrends() {
+  const r = await fetch("/api/trends");
+  if (!r.ok) throw new Error("Unable to load emotional trends.");
+  const d = await r.json();
+  new Chart(document.getElementById("trendChart"), {
+    type: "line",
+    data: {
+      labels: d.labels.map(l => l.slice(5)),  // show MM-DD
+      datasets: [
+        { label: "Positive", data: d.positive, borderColor: "#20c997", tension: .3, fill: false },
+        { label: "Neutral",  data: d.neutral,  borderColor: "#6c757d", tension: .3, fill: false },
+        { label: "Negative", data: d.negative, borderColor: "#dc3545", tension: .3, fill: false },
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+Promise.all([loadStats(), loadTrends()]).catch((error) => {
+  const message = document.createElement("div");
+  message.className = "alert alert-danger";
+  message.setAttribute("role", "alert");
+  message.textContent = error.message;
+  document.querySelector("main").prepend(message);
+});
+</script>
+{% endblock %}

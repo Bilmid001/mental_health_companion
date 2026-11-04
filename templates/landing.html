@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Mindful Companion | A kinder space to check in{% endblock %}
+{% block content %}
+<header class="landing-nav">
+  <a class="landing-brand" href="{{ url_for('index') }}"><span class="brand-mark"><i class="bi bi-heart-pulse-fill"></i></span> mindful<span>.</span></a>
+  <nav aria-label="Main navigation">
+    <a class="landing-nav-link" href="#how-it-works">How it works</a>
+    <a class="landing-nav-link" href="{{ url_for('login') }}">Log in</a>
+    <a class="btn btn-forest landing-nav-cta" href="{{ url_for('register') }}">Get started <i class="bi bi-arrow-up-right"></i></a>
+  </nav>
+</header>
+
+<section class="hero-section">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> A softer place to land</div>
+    <h1>You don't have to<br>figure it all out <em>alone.</em></h1>
+    <p class="hero-description">A quiet space to talk things through, check in with yourself, and take one small step at a time.</p>
+    <div class="hero-actions">
+      <a class="btn btn-forest btn-lg" href="{{ url_for('register') }}">Start your check-in <i class="bi bi-arrow-right"></i></a>
+      <a class="hero-login-link" href="{{ url_for('login') }}">I already have an account</a>
+    </div>
+    <div class="hero-reassurance"><i class="bi bi-lock-fill"></i> Your conversations are private to your account</div>
+  </div>
+  <div class="hero-visual">
+    <img class="hero-photo" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="A peaceful sunlit space for a quiet moment" fetchpriority="high">
+    <div class="photo-wash"></div>
+    <div class="hero-quote-card">
+      <span class="quote-sparkle"><i class="bi bi-stars"></i></span>
+      <p>“A small pause can be the beginning of something kinder.”</p>
+      <span>TAKE A BREATH. YOU'RE HERE.</span>
+    </div>
+    <div class="hero-image-label"><span class="status-dot"></span> A moment for yourself</div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="What you can do with Mindful Companion">
+  <div><i class="bi bi-chat-heart"></i><span>A space to be heard</span></div>
+  <div><i class="bi bi-mic"></i><span>Talk or type, your way</span></div>
+  <div><i class="bi bi-flower1"></i><span>Gentle, judgment-free check-ins</span></div>
+</section>
+
+<section class="how-section" id="how-it-works">
+  <div class="section-heading">
+    <div class="eyebrow">A LITTLE SUPPORT, ON YOUR TERMS</div>
+    <h2>Make room for <em>how you feel.</em></h2>
+    <p>No perfect words needed. Just start where you are.</p>
+  </div>
+  <div class="feature-grid">
+    <article class="feature-card feature-card-image">
+      <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Soft morning light over a calm landscape" loading="lazy">
+      <div class="feature-image-shade"></div>
+      <div class="feature-image-copy"><span>01 / CHECK IN</span><h3>Say what's on your mind.</h3><p>Share a thought, a feeling, or just how today has been.</p></div>
+    </article>
+    <article class="feature-card">
+      <span class="feature-icon"><i class="bi bi-chat-square-heart"></i></span>
+      <span class="feature-number">02 / BE HEARD</span>
+      <h3>A gentle conversation, at your pace.</h3>
+      <p>Type your message or use your voice. Your companion is here to listen and respond with care.</p>
+      <div class="feature-card-decoration"><i class="bi bi-chat-heart-fill"></i></div>
+    </article>
+    <article class="feature-card feature-card-sage">
+      <span class="feature-icon"><i class="bi bi-graph-up-arrow"></i></span>
+      <span class="feature-number">03 / NOTICE THE LITTLE THINGS</span>
+      <h3>See your check-ins over time.</h3>
+      <p>Personal insights can help you reflect on your feelings and notice your own patterns.</p>
+      <a class="text-link" href="{{ url_for('register') }}">Explore your space <i class="bi bi-arrow-right"></i></a>
+    </article>
+  </div>
+</section>
+
+<section class="closing-section">
+  <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1800&amp;q=85" alt="" loading="lazy">
+  <div class="closing-overlay"></div>
+  <div class="closing-copy"><span>YOU CAN BEGIN RIGHT HERE</span><h2>One honest moment<br>is enough to start.</h2><a class="btn btn-light btn-lg" href="{{ url_for('register') }}">Make a little space <i class="bi bi-arrow-right"></i></a></div>
+</section>
+<footer class="landing-footer">
+  <a class="landing-brand" href="{{ url_for('index') }}"><span class="brand-mark"><i class="bi bi-heart-pulse-fill"></i></span> mindful<span>.</span></a>
+  <p>A supportive tool, not a replacement for professional care. If you need immediate support, contact your local emergency service or <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer">find a helpline near you</a>.</p>
+</footer>
+{% endblock %}
